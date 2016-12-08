@@ -2,21 +2,23 @@
   "handler": "Microsoft.Compute.MultiVm",
   "version": "0.0.1-preview",
   "parameters": {
-    "basics": [{
+    "basics": [
+    {
       "name": "adminUsername",
       "type": "Microsoft.Compute.UserNameTextBox",
       "label": "Username",
-      "toolTip": "Admin username for the virtual machines.",
+      "toolTip": "Provide admin username for Snowball VM.",
       "osPlatform": "Windows"
-    }, {
+    }, 
+    {
       "name": "adminPassword",
       "type": "Microsoft.Compute.CredentialsCombo",
       "label": {
-        "password": "Password",
+        "password": "Enter password",
         "confirmPassword": "Confirm password"
       },
       "toolTip": {
-        "password": "Admin password for the virtual machines."
+        "password": "Admin password for Snowball VM."
       },
       "osPlatform": "Windows"
     }],
