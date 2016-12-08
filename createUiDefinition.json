@@ -3,108 +3,130 @@
   "version": "0.0.1-preview",
   "parameters": {
     "basics": [
-    {
-      "name": "adminUsername",
-      "type": "Microsoft.Compute.UserNameTextBox",
-      "label": "Username",
-      "toolTip": "Provide admin username for Snowball VM.",
-      "osPlatform": "Windows"
-    }, 
-    {
-      "name": "adminPassword",
-      "type": "Microsoft.Compute.CredentialsCombo",
-      "label": {
-        "password": "Enter password",
-        "confirmPassword": "Confirm password"
+      {
+        "name": "adminUsername",
+        "type": "Microsoft.Compute.UserNameTextBox",
+        "label": "Username",
+        "toolTip": "Provide admin username for Snowball VM.",
+        "osPlatform": "Windows"
       },
-      "toolTip": {
-        "password": "Admin password for Snowball VM."
-      },
-      "osPlatform": "Windows"
-    }],
-    "steps": [{
-      "name": "infrastructureConfig",
-      "label": "Infrastructure settings",
-      "subLabel": {
-        "preValidation": "Configure the infrastructure settings",
-        "postValidation": "Done"
-      },
-      "bladeTitle": "Infrastructure settings",
-      "elements": [{
-        "name": "VmCount",
-        "type": "Microsoft.Common.DropDown",
-        "label": "Number of VMs",
-        "defaultValue": "2",
-        "toolTip": "",
-        "constraints": {
-          "allowedValues": [{
-            "label": "2",
-            "value": 2
-          }, {
-            "label": "4",
-            "value": 4
-          }, {
-            "label": "8",
-            "value": 8
-          }, {
-            "label": "16",
-            "value": 16
-          }]
-        }
-      }, {
-        "name": "storageAccount",
-        "type": "Microsoft.Storage.StorageAccountSelector",
-        "label": "Storage account",
-        "defaultValue": {
-          "type": "Standard_LRS"
-        }
-      }, {
-        "name": "vmSize",
-        "type": "Microsoft.Compute.SizeSelector",
-        "label": "Virtual machine size",
-        "toolTip": "The size of the virtual machine for the domain controller.",
-        "recommendedSizes": [
-          "Standard_D1",
-          "Standard_D2",
-          "Standard_D3"
-        ],
-        "constraints": {
-          "allowedSizes": [
-            "Standard_D1",
-            "Standard_D2",
-            "Standard_D3",
-            "Standard_D4",
-            "Standard_D11",
-            "Standard_D12",
-            "Standard_D13",
-            "Standard_D14"
-          ]
-        },
-        "osPlatform": "Windows",
-        "imageReference": {
-          "publisher": "MicrosoftWindowsServer",
-          "offer": "WindowsServer",
-          "sku": "2012-R2-Datacenter"
-        },
-        "count": "[steps('infrastructureConfig').vmCount]"
-      }, {
-        "name": "dnsAndPublicIP",
-        "type": "Microsoft.Network.PublicIpAddressCombo",
+      {
+        "name": "adminPassword",
+        "type": "Microsoft.Compute.CredentialsCombo",
         "label": {
-          "publicIpAddress": "Public IP address",
-          "domainNameLabel": "DNS Prefix"
+          "password": "Enter password",
+          "confirmPassword": "Confirm password"
         },
         "toolTip": {
-          "domainNameLabel": "DNS Prefix for the VM public IP addresses."
+          "password": "Admin password for Snowball VM."
         },
-        "defaultValue": {
-          "publicIpAddressName": "publicIP"
+        "osPlatform": "Windows"
+      }
+    ],
+    "steps": [
+      {
+        "name": "infrastructureConfig",
+        "label": "Snowball definition",
+        "subLabel": {
+          "preValidation": "Configure Snowball infrastructure parameters",
+          "postValidation": "Done"
         },
-        "options": {
-          "hideNone": true
-        }
-      }]
-    }],
+        "bladeTitle": "Snowball definition",
+        "elements": [
+          {
+            "name": "storageAccount",
+            "type": "Microsoft.Storage.StorageAccountSelector",
+            "label": "Storage account",
+            "defaultValue": {
+              "type": "Standard_LRS"
+            }
+          },
+          {
+            "name": "vmSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "Virtual machine size",
+            "toolTip": "The size of the virtual machine.",
+            "recommendedSizes": [
+              "Standard_D1",
+              "Standard_D2",
+              "Standard_D3"
+            ],
+            "constraints": {
+              "allowedSizes": [
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3",
+                "Standard_D4",
+                "Standard_D11",
+                "Standard_D12",
+                "Standard_D13",
+                "Standard_D14"
+              ]
+            },
+            "osPlatform": "Windows",
+            "imageReference": {
+              "publisher": "MicrosoftWindowsServer",
+              "offer": "WindowsServer",
+              "sku": "2012-R2-Datacenter"
+            }
+          },
+          {
+            "name": "vnet",
+            "type": "Microsoft.Network.VirtualNetworkCombo",
+            "label": {
+              "virtualNetwork": "Snowball network",
+              "subnets": "Subnets"
+            },
+            "toolTip": {
+              "virtualNetwork": "",
+              "subnets": ""
+            },
+            "defaultValue": {
+              "name": "SnowballVNet",
+              "addressPrefixSize": "/16"
+            },
+            "constraints": {
+              "minAddressPrefixSize": "/16"
+            },
+            "options": {
+              "hideExisting": false
+            },
+            "subnets": {
+              "subnet": {
+                "label": "First subnet",
+                "defaultValue": {
+                  "name": "Servers",
+                  "addressPrefixSize": "/24"
+                },
+                "constraints": {
+                  "minAddressPrefixSize": "/24",
+                  "minAddressCount": 12,
+                  "requireContiguousAddresses": true
+                }
+              }
+            },
+            "visible": true
+          },
+          {
+            "name": "dnsAndPublicIP",
+            "type": "Microsoft.Network.PublicIpAddressCombo",
+            "label": {
+              "publicIpAddress": "Public IP address",
+              "domainNameLabel": "DNS Prefix"
+            },
+            "toolTip": {
+              "domainNameLabel": "DNS Prefix for the VM public IP address."
+            },
+            "defaultValue": {
+              "publicIpAddressName": "SnowballSmall"
+            },
+            "options": {
+              "hideNone": true
+            }
+          }
+        ]
+      }
+    ],
     "outputs": {
       "location": "[location()]",
       "adminUsername": "[basics('adminUsername')]",
@@ -115,7 +137,6 @@
       "existingStorageAccountRG": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
       "domainName": "[steps('infrastructureConfig').domainName]",
       "vmSize": "[steps('infrastructureConfig').vmSize]",
-      "vmCount": "[steps('infrastructureConfig').vmCount]",
       "publicIPAddressName": "[steps('infrastructureConfig').DnsAndPublicIP.name]",
       "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]",
       "existingIPRGName": "[steps('infrastructureConfig').dnsAndPublicIP.resourceGroup]",
