@@ -2,27 +2,7 @@
   "handler": "Microsoft.Compute.MultiVm",
   "version": "0.0.1-preview",
   "parameters": {
-    "basics": [
-      {
-        "name": "adminUsername",
-        "type": "Microsoft.Compute.UserNameTextBox",
-        "label": "Username",
-        "toolTip": "Provide admin username for Snowball VM.",
-        "osPlatform": "Windows"
-      },
-      {
-        "name": "adminPassword",
-        "type": "Microsoft.Compute.CredentialsCombo",
-        "label": {
-          "password": "Enter password",
-          "confirmPassword": "Confirm password"
-        },
-        "toolTip": {
-          "password": "Admin password for Snowball VM."
-        },
-        "osPlatform": "Windows"
-      }
-    ],
+    "basics": [],
     "steps": [
       {
         "name": "infrastructureConfig",
@@ -33,6 +13,25 @@
         },
         "bladeTitle": "Snowball definition",
         "elements": [
+          {
+            "name": "adminUsername",
+            "type": "Microsoft.Compute.UserNameTextBox",
+            "label": "Username",
+            "toolTip": "Provide admin username for Snowball VM.",
+            "osPlatform": "Windows"
+          },
+          {
+            "name": "adminPassword",
+            "type": "Microsoft.Compute.CredentialsCombo",
+            "label": {
+              "password": "Enter password",
+              "confirmPassword": "Confirm password"
+            },
+            "toolTip": {
+              "password": "Admin password for Snowball VM."
+            },
+            "osPlatform": "Windows"
+          },
           {
             "name": "storageAccount",
             "type": "Microsoft.Storage.StorageAccountSelector",
@@ -93,7 +92,7 @@
             },
             "subnets": {
               "subnet": {
-                "label": "First subnet",
+                "label": "Server subnet",
                 "defaultValue": {
                   "name": "Servers",
                   "addressPrefixSize": "/24"
@@ -131,7 +130,6 @@
       "location": "[location()]",
       "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('adminPassword')]",
-      "storageAccountNewOrExisting": "[steps('infrastructureConfig').storageAccount.newOrExisting]",
       "StorageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
       "existingStorageAccountRG": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
