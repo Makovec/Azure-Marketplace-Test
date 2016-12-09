@@ -55,7 +55,11 @@
             "type": "Microsoft.Storage.StorageAccountSelector",
             "label": "Storage account",
             "defaultValue": {
+              "name": "snowballsa",
               "type": "Standard_LRS"
+            },
+            "options": {
+              "hideExisting": true
             }
           },
           {
@@ -66,14 +70,16 @@
             "recommendedSizes": [
               "Standard_D1",
               "Standard_D2",
-              "Standard_D3"
+              "Standard_D3",
+              "Standard_D4"
             ],
             "constraints": {
               "allowedSizes": [
                 "Standard_D1",
                 "Standard_D2",
                 "Standard_D3",
-                "Standard_D4"
+                "Standard_D4",
+                "Standard_D4_v2"
               ]
             },
             "osPlatform": "Windows",
