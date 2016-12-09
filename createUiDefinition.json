@@ -7,7 +7,7 @@
         "name": "element1",
         "type": "Microsoft.Common.TextBox",
         "label": "Some text box",
-        "defaultValue": "[concat('a','b')]",
+        "defaultValue": "[concat('snowball', utcNow()]",
         "toolTip": "Halp!",
         "constraints": {
           "required": true,
