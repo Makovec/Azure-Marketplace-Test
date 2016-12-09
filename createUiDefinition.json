@@ -37,7 +37,6 @@
             "type": "Microsoft.Storage.StorageAccountSelector",
             "label": "Storage account",
             "defaultValue": {
-              "name": "[concat('snowballsm'), utcNow()]",
               "type": "Standard_LRS"
             }
           },
@@ -56,11 +55,7 @@
                 "Standard_D1",
                 "Standard_D2",
                 "Standard_D3",
-                "Standard_D4",
-                "Standard_D11",
-                "Standard_D12",
-                "Standard_D13",
-                "Standard_D14"
+                "Standard_D4"
               ]
             },
             "osPlatform": "Windows",
@@ -78,8 +73,8 @@
               "subnets": "Subnets"
             },
             "toolTip": {
-              "virtualNetwork": "",
-              "subnets": ""
+              "virtualNetwork": "Virtual network where Snowball will live.",
+              "subnets": "Subnets with servers."
             },
             "defaultValue": {
               "name": "SnowballVNet",
@@ -89,7 +84,7 @@
               "minAddressPrefixSize": "/16"
             },
             "options": {
-              "hideExisting": false
+              "hideExisting": true
             },
             "subnets": {
               "subnet": {
@@ -121,7 +116,9 @@
               "publicIpAddressName": "SnowballSmall"
             },
             "options": {
-              "hideNone": true
+              "hideNone": true,
+              "hideDomainNameLabel": false,
+              "hideExisting": true
             }
           }
         ]
