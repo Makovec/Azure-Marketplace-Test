@@ -2,21 +2,7 @@
   "handler": "Microsoft.Compute.MultiVm",
   "version": "0.0.1-preview",
   "parameters": {
-    "basics": [
-      {
-        "name": "element1",
-        "type": "Microsoft.Common.TextBox",
-        "label": "Some text box",
-        "defaultValue": "[concat('snowball', utcNow()]",
-        "toolTip": "Halp!",
-        "constraints": {
-          "required": true,
-          "regex": "^[a-z0-9A-Z]{1,30}$",
-          "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
-        },
-        "visible": true
-      }
-    ],
+    "basics": [ ],
     "steps": [
       {
         "name": "infrastructureConfig",
@@ -70,23 +56,20 @@
             "recommendedSizes": [
               "Standard_D1",
               "Standard_D2",
-              "Standard_D3",
-              "Standard_D4"
+              "Standard_D3"
             ],
             "constraints": {
               "allowedSizes": [
                 "Standard_D1",
                 "Standard_D2",
-                "Standard_D3",
-                "Standard_D4",
-                "Standard_D4_v2"
+                "Standard_D3"
               ]
             },
             "osPlatform": "Windows",
             "imageReference": {
               "publisher": "MicrosoftWindowsServer",
               "offer": "WindowsServer",
-              "sku": ["2012-R2-Datacenter","2008-R2-Datacenter"]
+              "sku": "2012-R2-Datacenter"
             }
           },
           {
