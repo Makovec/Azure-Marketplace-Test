@@ -133,7 +133,7 @@
       "existingStorageAccountRG": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
       "domainName": "[steps('infrastructureConfig').domainName]",
       "vmSize": "[steps('infrastructureConfig').vmSize]",
-      "publicIPAddressName": "[steps('infrastructureConfig').DnsAndPublicIP.name]",
+      "publicIPAddressName": "[steps('infrastructureConfig').dnsAndPublicIP.name]",
       "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]",
       "existingIPRGName": "[steps('infrastructureConfig').dnsAndPublicIP.resourceGroup]",
       "publicIPNewOrExisting": "[steps('infrastructureConfig').dnsAndPublicIP.newOrExistingOrNone]"
