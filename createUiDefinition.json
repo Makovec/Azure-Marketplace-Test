@@ -37,7 +37,7 @@
             "type": "Microsoft.Storage.StorageAccountSelector",
             "label": "Storage account",
             "defaultValue": {
-              "name": "[concat('snowballsm'), replace(substring(utcNow(), 0, 10), '-', '')]",
+              "name": "[concat('snowballsm'), utcNow()]",
               "type": "Standard_LRS"
             }
           },
