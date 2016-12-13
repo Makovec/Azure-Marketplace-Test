@@ -54,10 +54,9 @@
             "label": "Virtual machine size",
             "toolTip": "The size of the virtual machine.",
             "recommendedSizes": [
-              "Standard_D1",
               "Standard_D1_v2",
-              "Standard_D2",
-              "Standard_D2_v2"
+              "Standard_D2_v2",
+              "Standard_D2"              
             ],
             "constraints": {
               "allowedSizes": [
@@ -133,8 +132,8 @@
     "outputs": {
       "location": "[location()]",
       "resourceGroup": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
-      "adminUsername": "[basics('adminUsername')]",
-      "adminPassword": "[basics('adminPassword')]",
+      "adminUsername": "[steps('infrastructureConfig').adminUsername]",
+      "adminPassword": "[steps('infrastructureConfig').adminPassword]",
       
       "StorageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
