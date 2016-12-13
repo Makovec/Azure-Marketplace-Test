@@ -8,7 +8,7 @@
         "name": "infrastructureConfig",
         "label": "Snowball definition",
         "subLabel": {
-          "preValidation": "Configure Snowball infrastructure parameters",
+          "preValidation": "Configure Snowball infrastructure parameters.",
           "postValidation": "Done"
         },
         "bladeTitle": "Snowball definition",
@@ -55,22 +55,21 @@
             "toolTip": "The size of the virtual machine.",
             "recommendedSizes": [
               "Standard_D1",
+              "Standard_D1_v2",
               "Standard_D2",
-              "Standard_D3"
+              "Standard_D2_v2"
             ],
             "constraints": {
               "allowedSizes": [
                 "Standard_D1",
                 "Standard_D2",
-                "Standard_D3"
+                "Standard_D3",
+                "Standard_D1_v2",
+                "Standard_D2_v2",
+                "Standard_D3_v2"
               ]
             },
-            "osPlatform": "Windows",
-            "imageReference": {
-              "publisher": "MicrosoftWindowsServer",
-              "offer": "WindowsServer",
-              "sku": "2012-R2-Datacenter"
-            }
+            "osPlatform": "Windows"
           },
           {
             "name": "vnet",
@@ -133,17 +132,17 @@
     ],
     "outputs": {
       "location": "[location()]",
+      "resourceGroup": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
       "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('adminPassword')]",
+      
       "StorageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-      "existingStorageAccountRG": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
-      "domainName": "[steps('infrastructureConfig').domainName]",
+
       "vmSize": "[steps('infrastructureConfig').vmSize]",
+
       "publicIPAddressName": "[steps('infrastructureConfig').dnsAndPublicIP.name]",
-      "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]",
-      "existingIPRGName": "[steps('infrastructureConfig').dnsAndPublicIP.resourceGroup]",
-      "publicIPNewOrExisting": "[steps('infrastructureConfig').dnsAndPublicIP.newOrExistingOrNone]"
+      "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]"
     }
   }
 }
