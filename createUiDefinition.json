@@ -131,14 +131,20 @@
     ],
     "outputs": {
       "location": "[location()]",
-      "resourceGroup": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
+      
       "adminUsername": "[steps('infrastructureConfig').adminUsername]",
       "adminPassword": "[steps('infrastructureConfig').adminPassword]",
       
+      "resourceGroup": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
       "StorageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
 
       "vmSize": "[steps('infrastructureConfig').vmSize]",
+
+      "vnetName": "[steps('infrastructureConfig').vnet.name]",
+      "addressPrefix": "[steps('infrastructureConfig').vnet.addressPrefix]",
+      "subnetName": "[steps('infrastructureConfig').vnet.subnets.subnet1.name]",
+      "subnetPrefix": "[steps('infrastructureConfig').vnet.subnets.subnet1.addressPrefix]",
 
       "publicIPAddressName": "[steps('infrastructureConfig').dnsAndPublicIP.name]",
       "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]"
