@@ -2,7 +2,7 @@
   "handler": "Microsoft.Compute.MultiVm",
   "version": "0.0.1-preview",
   "parameters": {
-    "basics": [ ],
+    "basics": [],
     "steps": [
       {
         "name": "infrastructureConfig",
@@ -13,6 +13,17 @@
         },
         "bladeTitle": "Snowball definition",
         "elements": [
+          {
+            "name": "vmName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "VM name",
+            "defaultValue": "SnowballVM",
+            "toolTip": "Enter virtual machine name",
+            "constraints": {
+              "required": true
+            },
+            "visible": true
+          },
           {
             "name": "adminUsername",
             "type": "Microsoft.Compute.UserNameTextBox",
@@ -56,7 +67,7 @@
             "recommendedSizes": [
               "Standard_D1_v2",
               "Standard_D2_v2",
-              "Standard_D2"              
+              "Standard_D2"
             ],
             "constraints": {
               "allowedSizes": [
@@ -131,21 +142,17 @@
     ],
     "outputs": {
       "location": "[location()]",
-      
       "adminUsername": "[steps('infrastructureConfig').adminUsername]",
       "adminPassword": "[steps('infrastructureConfig').adminPassword]",
-      
       "resourceGroup": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
-      "StorageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
+      "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-
+      "vmName": "[steps('infrastructureConfig').vmName]",
       "vmSize": "[steps('infrastructureConfig').vmSize]",
-
       "vnetName": "[steps('infrastructureConfig').vnet.name]",
       "addressPrefix": "[steps('infrastructureConfig').vnet.addressPrefix]",
       "subnetName": "[steps('infrastructureConfig').vnet.subnets.subnet.name]",
       "subnetPrefix": "[steps('infrastructureConfig').vnet.subnets.subnet.addressPrefix]",
-
       "publicIPAddressName": "[steps('infrastructureConfig').dnsAndPublicIP.name]",
       "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]"
     }
