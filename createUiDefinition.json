@@ -143,8 +143,8 @@
 
       "vnetName": "[steps('infrastructureConfig').vnet.name]",
       "addressPrefix": "[steps('infrastructureConfig').vnet.addressPrefix]",
-      "subnetName": "[steps('infrastructureConfig').vnet.subnets.subnet1.name]",
-      "subnetPrefix": "[steps('infrastructureConfig').vnet.subnets.subnet1.addressPrefix]",
+      "subnetName": "[steps('infrastructureConfig').vnet.subnets.subnet.name]",
+      "subnetPrefix": "[steps('infrastructureConfig').vnet.subnets.subnet.addressPrefix]",
 
       "publicIPAddressName": "[steps('infrastructureConfig').dnsAndPublicIP.name]",
       "dnsNameForPublicIP": "[steps('infrastructureConfig').dnsAndPublicIP.domainNameLabel]"
